@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'inscription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center; /* Centrer le contenu du formulaire */
+        }
+
+        img {
+            display: block;
+            margin: 0 auto; /* Centrer l'image horizontalement */
+            margin-bottom: 20px; /* Ajouter un espace en bas de l'image */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select {
+            width: 30%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+        input{
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px; /* Ajuster l'espace entre le sélecteur et le champ de saisie */
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #error-message {
+            color: red;
+            margin-bottom: 8px;
+        }
+
+        #confirmation-message {
+            color: green;
+            margin-bottom: 8px;
+        }
+        
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const errorMessage = document.getElementById('error-message');
+            const confirmationMessage = document.getElementById('confirmation-message');
+
+            form.addEventListener('submit', function(event) {
+                const numeroTelInput = document.getElementById('numero_tel');
+                const numeroTelValue = numeroTelInput.value;
+
+                if (!/^[0-9]{9}$/.test(numeroTelValue)) {
+                    errorMessage.textContent = 'Veuillez entrer un numéro de téléphone valide.';
+                    confirmationMessage.textContent = ''; // Clear the confirmation message on error
+                    event.preventDefault(); // Empêche l'envoi du formulaire si la validation échoue
+                } else {
+                    errorMessage.textContent = '';
+                    confirmationMessage.textContent = 'Vous avez pointé !'; // Display the confirmation message
+                }
+            });
+        });
+    </script>
+    
+</head>
+<body>
+
+    <form action="#" method="post">
+        <img src="C:\Users\Dell Latitude 3420\Documents\PointMe\z_im.png" alt="Girl in a jacket" width="50" height="70">
+
+        <div class="flex-container">
+            <select id="indicatif" name="indicatif" required>
+                <option value="+221">+221</option>
+                <option value="+33">+33</option>
+                <!-- Ajoutez d'autres indicatifs selon vos besoins -->
+            </select>
+            <input type="tel" id="numero_tel" name="numero_tel" required placeholder="SAISIR VOTRE NUMÉRO DE TÉLÉPHONE" pattern="[0-9]{9}" title="Entrez uniquement des chiffres">
+        </div>
+
+        <div id="error-message"></div>
+        <div id="confirmation-message"></div>
+        <button type="submit">POINTER</button>
+    </form>
+
+</body>
+</html>
